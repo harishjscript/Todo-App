@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+<h2>OverDue Tasks</h2>
+<div class = 'right-cor'>
+  <a ui-sref="todo">Home</a>
+
+  <a ui-sref="pending">Pending Tasks</a>
+</div>
+</br>
+<label for="field4"><span>Sort By</span>
+  <select name="field4" ng-model='PUSR.task.sorttask' ng-change="PUSR.sort(PUSR.task)" class="select-field">
+    <option value="name">Name</option>
+    <option value="duedate">Due Date</option>
+    <option value="priority">Priority</option>
+ </select>
+</label>
+
+<table ng-if="PUSR.tasklist.length>                                                                                                                                        0">
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Priority</th>
+  </tr>
+  <tr ng-repeat='tasklist in PUSR.tasklist'>
+    <td>{{tasklist.name}}</td>
+    <td>{{tasklist.date | date:medium}}</td>
+    <td>{{tasklist.priority}}</td>
+    <!-- <td>
+      <a ui-sref="register({id:tasklist._id})">Edit</a>
+    </td>
+    <td>
+      <a href="/site/index.html#/pending" ng-click="PUSR.deleteTask(tasklist._id)">Delete</a>
+    </td> -->
+  </tr>
+</table>
+
+<h3 ng-if="PUSR.tasklist.length==0">No OverDue Tasks Available!</h3>
+
+</body>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.right-cor {
+  float: right;
+}
+
+a {
+    width: 10%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    color: red;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</html>
